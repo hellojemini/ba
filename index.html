@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎈 Happy Birthday Invitation</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: friendly and elegant -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #fcf2e1;
+            background-image: radial-gradient(circle at 30% 40%, #ffe9c4 0%, #ffe0b5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #3d2b1a;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* header – invitation style */
+        .header {
+            background: #ffffffdd;
+            backdrop-filter: blur(8px);
+            border-radius: 60px 60px 30px 30px;
+            padding: 20px 35px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 20px 30px -10px #c06b2b80;
+            border: 3px solid white;
+            border-top: 8px solid #fea82f;
+        }
+
+        .logo h1 {
+            font-size: 34px;
+            font-weight: 800;
+            background: linear-gradient(145deg, #bf571b, #f08a2e, #d44f2c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo p {
+            font-size: 16px;
+            color: #9b5e2e;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .invite-badge {
+            background: #fb8b2c;
+            border-radius: 100px;
+            padding: 10px 30px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 8px 0 #a3490c;
+            display: flex;
+            gap: 12px;
+        }
+
+        /* main grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            gap: 25px;
+        }
+
+        /* left form panel */
+        .form-panel {
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 40px -15px #bb6b2b;
+            border: 4px solid #fec38b;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: linear-gradient(115deg, #f98d3a, #ffb347);
+            padding: 22px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 5px solid #fff1aa;
+        }
+
+        .panel-header h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2b170a;
+            text-shadow: 2px 2px 0 #ffc107;
+        }
+
+        .party-icon {
+            font-size: 38px;
+            filter: drop-shadow(4px 4px 0 #c15913);
+        }
+
+        .form-sections {
+            padding: 25px;
+            max-height: 800px;
+            overflow-y: auto;
+            background: #fffbf5;
+        }
+
+        /* collapsible sections */
+        .section {
+            background: #fffbee;
+            border-radius: 28px;
+            margin-bottom: 22px;
+            border: 2px solid #ffc489;
+            transition: all 0.2s;
+        }
+
+        .section-header {
+            padding: 18px 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px;
+            background: #ffe8cf;
+            border-radius: 28px 28px 0 0;
+            color: #963f1a;
+        }
+
+        .section-header i {
+            color: #d95f1a;
+            transition: transform 0.2s;
+        }
+
+        .section.active .section-header i {
+            transform: rotate(90deg);
+        }
+
+        .section-content {
+            padding: 10px 22px 22px 22px;
+            display: none;
+        }
+
+        .section.active .section-content {
+            display: block;
+        }
+
+        /* form elements */
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: #a44a1f;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 3px solid #fec89a;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #f57c00;
+            box-shadow: 0 0 0 5px #ffe0a3;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .radio-option, .check-option {
+            background: #f5e1ce;
+            padding: 10px 18px;
+            border-radius: 50px;
+            border: 2px solid #ffb26b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .radio-option:hover, .check-option:hover {
+            background: #ffdbb5;
+        }
+
+        /* color picker */
+        .color-duo {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0dac8;
+            padding: 5px 15px 5px 10px;
+            border-radius: 40px;
+        }
+
+        .preset-birthday {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 15px 0 5px;
+        }
+        .preset-dot {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #ac6f3b;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .preset-dot:hover { transform: scale(1.1); }
+
+        /* function cards – invitation events */
+        .event-card {
+            background: #f5ebdb;
+            border-radius: 25px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 3px dashed #fea44c;
+            position: relative;
+        }
+        .remove-event {
+            color: #b13b1b;
+            cursor: pointer;
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 22px;
+        }
+
+        .add-btn {
+            background: #ffb554;
+            border: none;
+            color: #2e1c0e;
+            font-weight: 800;
+            padding: 16px;
+            border-radius: 60px;
+            width: 100%;
+            font-size: 18px;
+            border: 4px solid white;
+            box-shadow: 0 5px 0 #a95210;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: 0.1s;
+        }
+        .add-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #a95210; }
+
+        /* preview panel */
+        .preview-panel {
+            background: white;
+            border-radius: 40px;
+            padding: 28px;
+            border: 5px solid #fcb375;
+            box-shadow: 0 25px 35px -10px #b35f1a;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px dotted #ff9f4b;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .preview-header h3 { font-size: 26px; font-weight: 800; color: #9f481f; }
+
+        .preview-box {
+            background: #2a211b;
+            border-radius: 25px;
+            padding: 25px;
+            min-height: 550px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #fadfad;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            max-height: 650px;
+            border: 6px solid #f9b53b;
+            box-shadow: inset 0 0 20px #6f3f0e;
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            flex: 1;
+            justify-content: center;
+            border: 4px solid white;
+        }
+        .btn-primary {
+            background: #f57c00;
+            color: white;
+            text-shadow: 2px 2px 0 #b64900;
+            box-shadow: 0 5px 0 #a33d00;
+        }
+        .btn-primary:active { transform: translateY(4px); box-shadow: 0 1px 0 #a33d00; }
+        .btn-secondary {
+            background: #ffe066;
+            color: #542d12;
+            box-shadow: 0 5px 0 #c28f30;
+        }
+        .btn-secondary:active { transform: translateY(4px); box-shadow: 0 1px 0 #c28f30; }
+
+        /* toast */
+        .toast {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            left: 25px;
+            max-width: 350px;
+            margin: 0 auto;
+            background: #2f7a4c;
+            color: white;
+            padding: 16px 28px;
+            border-radius: 80px;
+            font-weight: 700;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px black;
+            z-index: 9999;
+            border-left: 10px solid #ffcd7e;
+        }
+
+        /* modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: #fff6e4;
+            margin: 12% auto;
+            padding: 35px;
+            border-radius: 70px;
+            max-width: 550px;
+            border: 7px solid #ffa34d;
+            box-shadow: 0 15px 0 #9d4d1a;
+        }
+
+        @media (max-width: 1200px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .preview-panel { position: static; }
+        }
+        @media (max-width: 600px) {
+            .header { flex-direction: column; align-items: start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- toast notifier -->
+        <div class="toast" id="toast" onclick="this.style.display='none'"><i class="fas fa-check-circle"></i> <span id="toastMsg">copied</span></div>
+
+        <!-- AI platform modal -->
+        <div id="aiModal" class="modal">
+            <div class="modal-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 style="color:#822f00;"><i class="fas fa-hat-wizard"></i> generate invitation</h2>
+                    <span style="font-size: 40px; cursor: pointer;" onclick="closeModal()">&times;</span>
+                </div>
+                <p style="margin-bottom: 25px;">Use your prompt with:</p>
+                <button class="platform-btn" style="background:white; border:4px solid #fea82f; border-radius:60px; padding:18px; width:100%; margin-bottom:15px; font-weight:bold; font-size:18px;" onclick="openChatGPT()"><i class="fab fa-openai" style="color:#1fa38f;"></i> ChatGPT (DALL·E)</button>
+                <button class="platform-btn" style="background:white; border:4px solid #fea82f; border-radius:60px; padding:18px; width:100%; margin-bottom:15px; font-weight:bold; font-size:18px;" onclick="openGemini()"><i class="fas fa-cloud" style="color:#4285F4;"></i> Google Gemini</button>
+                <div style="text-align:center;">
+                    <button class="copy-link-btn" style="background:#ffd966; border:none; border-radius:40px; padding:12px 30px; font-weight:bold;" onclick="copyPromptOnly()"><i class="fas fa-copy"></i> copy prompt only</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <div class="header">
+            <div class="logo">
+                <h1>🎉Birthday Invitation</h1>
+                <p><i class="fas fa-envelope-open-text"></i> design the perfect birthday party invite · AI ready</p>
+            </div>
+            <div class="invite-badge">
+                <i class="fas fa-cake-candles"></i> you're invited! <i class="fas fa-balloon"></i>
+            </div>
+        </div>
+
+        <!-- main -->
+        <div class="main-grid">
+            <!-- left form -->
+            <div class="form-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-pencil-alt"></i> customise invitation</h2>
+                    <div class="party-icon">🎂✨</div>
+                </div>
+                <div class="form-sections" id="formSections">
+                    <!-- SECTION 1: invite basics -->
+                    <div class="section active" id="section1">
+                        <div class="section-header" onclick="toggleSection(1)"><span><i class="fas fa-envelope"></i> 1. Invitation type & colors</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <div class="form-row">
+                                <label class="form-label">Card format</label>
+                                <select class="form-control" id="format" onchange="updatePrompt()">
+                                    <option value="portrait 5x7 inch birthday invitation">Portrait 5x7"</option>
+                                    <option value="landscape 8x5 inch foldable card">Landscape 8x5"</option>
+                                    <option value="square 6x6 inch modern invite">Square 6x6"</option>
+                                    <option value="digital invitation for phone screen 9x16">Digital / mobile</option>
+                                </select>
+                            </div>
+                            <div class="color-duo">
+                                <div class="color-item"><span>Main:</span> <input type="color" id="primaryPicker" value="#f15a24" onchange="document.getElementById('primaryColor').value=this.value; updatePrompt()"></div>
+                                <div class="color-item"><span>Accent:</span> <input type="color" id="secondaryPicker" value="#ffcd3c" onchange="document.getElementById('secondaryColor').value=this.value; updatePrompt()"></div>
+                            </div>
+                            <div class="preset-birthday">
+                                <div class="preset-dot" style="background:#f15a24;" onclick="setColors('#f15a24','#ffcd3c')"></div>
+                                <div class="preset-dot" style="background:#ff70a6;" onclick="setColors('#ff70a6','#70d6ff')"></div>
+                                <div class="preset-dot" style="background:#4c9f70;" onclick="setColors('#4c9f70','#f4d03f')"></div>
+                                <div class="preset-dot" style="background:#9b5de5;" onclick="setColors('#9b5de5','#f15bb5')"></div>
+                            </div>
+                            <input type="hidden" id="primaryColor" value="#f15a24">
+                            <input type="hidden" id="secondaryColor" value="#ffcd3c">
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: birthday star & host -->
+                    <div class="section" id="section2">
+                        <div class="section-header" onclick="toggleSection(2)"><span><i class="fas fa-star"></i> 2. Birthday person & host</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <div class="form-row"><label class="form-label">Name of birthday star</label><input class="form-control" id="birthdayName" value="Emma" onkeyup="updatePrompt()"></div>
+                            <div class="form-row"><label class="form-label">Age / birthday (e.g., 7th)</label><input class="form-control" id="age" value="7th" onkeyup="updatePrompt()"></div>
+                            <div class="form-row"><label class="form-label">Hosted by (parents, or "you")</label><input class="form-control" id="host" value="Sarah & Mike" onkeyup="updatePrompt()"></div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: party details (multiple events possible) -->
+                    <div class="section" id="section3">
+                        <div class="section-header" onclick="toggleSection(3)"><span><i class="fas fa-clock"></i> 3. Party events & times</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <div id="eventContainer">
+                                <div class="event-card">
+                                    <span class="remove-event" onclick="removeEvent(this)"><i class="fas fa-times-circle"></i></span>
+                                    <div class="form-row"><label class="form-label">Event name</label><input class="form-control event-name" value="Birthday Party" onkeyup="updatePrompt()"></div>
+                                    <div class="form-row"><label class="form-label">Date & time</label><input class="form-control event-datetime" value="Sat, June 14 · 3:00 PM" onkeyup="updatePrompt()"></div>
+                                    <div class="form-row"><label class="form-label">Location</label><input class="form-control event-location" value="FunZone Arena, 123 Main St" onkeyup="updatePrompt()"></div>
+                                </div>
+                            </div>
+                            <button class="add-btn" onclick="addEvent()"><i class="fas fa-plus"></i> add another event (cake, dinner, etc.)</button>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4: theme & decorations -->
+                    <div class="section" id="section4">
+                        <div class="section-header" onclick="toggleSection(4)"><span><i class="fas fa-palette"></i> 4. Theme & style</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <div class="form-row"><label class="form-label">Theme / vibe</label>
+                                <select class="form-control" id="theme" onchange="updatePrompt()">
+                                    <option value="unicorn and rainbow">🦄 unicorn rainbow</option>
+                                    <option value="superhero city">🦸 superhero</option>
+                                    <option value="princess castle">👑 princess castle</option>
+                                    <option value="dinosaur adventure">🦖 dinosaur</option>
+                                    <option value="tropical luau">🌺 tropical luau</option>
+                                    <option value="circus carnival">🎪 circus carnival</option>
+                                    <option value="elegant gold & rose">✨ elegant gold</option>
+                                </select>
+                            </div>
+                            <div class="form-row"><label class="form-label">Background / decor</label>
+                                <select class="form-control" id="backdrop" onchange="updatePrompt()">
+                                    <option value="balloon garland and confetti">🎈 balloon garland</option>
+                                    <option value="bokeh lights and streamers">✨ bokeh lights</option>
+                                    <option value="outdoor garden with fairy lights">🌿 garden lights</option>
+                                    <option value="colorful party banners">📋 party banners</option>
+                                </select>
+                            </div>
+                            <div class="form-row"><label class="form-label">Extras (check all that fit)</label>
+                                <div class="checkbox-group">
+                                    <label class="check-option"><input type="checkbox" class="extra" value="gift boxes" checked onchange="updatePrompt()"> 🎁 gifts</label>
+                                    <label class="check-option"><input type="checkbox" class="extra" value="sparklers" onchange="updatePrompt()"> ✨ sparklers</label>
+                                    <label class="check-option"><input type="checkbox" class="extra" value="cake with candles" checked onchange="updatePrompt()"> 🎂 cake</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5: invitation text & fonts -->
+                    <div class="section" id="section5">
+                        <div class="section-header" onclick="toggleSection(5)"><span><i class="fas fa-quote-right"></i> 5. Wording & fonts</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <div class="form-row"><label class="form-label">Header / main line</label><input class="form-control" id="headline" value="You're Invited!" onkeyup="updatePrompt()"></div>
+                            <div class="form-row"><label class="form-label">Additional line (optional)</label><input class="form-control" id="subline" value="To Emma's 7th Birthday" onkeyup="updatePrompt()"></div>
+                            <div class="form-row"><label class="form-label">Closing / RSVP</label><input class="form-control" id="rsvpLine" value="RSVP by June 1 to Sarah" onkeyup="updatePrompt()"></div>
+                            <div class="form-row"><label class="form-label">Font style</label>
+                                <select class="form-control" id="font" onchange="updatePrompt()">
+                                    <option value="playful rounded sans-serif">🥳 playful rounded</option>
+                                    <option value="elegant script with swirls">✍️ elegant script</option>
+                                    <option value="colorful hand-drawn letters">🎨 hand-drawn</option>
+                                    <option value="bold retro serif">📰 bold retro</option>
+                                </select>
+                            </div>
+                            <div class="form-row"><label class="form-label">Text effect</label>
+                                <select class="form-control" id="fx" onchange="updatePrompt()">
+                                    <option value="gold foil stamping">🥇 gold foil</option>
+                                    <option value="glossy 3D effect">✨ 3D glossy</option>
+                                    <option value="glitter texture">💖 glitter</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 6: artistic mood -->
+                    <div class="section" id="section6">
+                        <div class="section-header" onclick="toggleSection(6)"><span><i class="fas fa-brush"></i> 6. Art style</span> <i class="fas fa-chevron-right"></i></div>
+                        <div class="section-content">
+                            <select class="form-control" id="art" onchange="updatePrompt()">
+                                <option value="digital illustration, bright colors">🎨 digital bright</option>
+                                <option value="watercolor painting, soft">🖌️ watercolor</option>
+                                <option value="cartoon style, bold outlines">✏️ cartoon</option>
+                                <option value="photorealistic 3D render">📸 3D realistic</option>
+                                <option value="vintage retro 1950s">📺 retro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right preview -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> invitation prompt</h3>
+                    <span style="background:#ffb347; border-radius:50px; padding:8px 18px;">✨ preview</span>
+                </div>
+                <div class="preview-box" id="promptPreview">loading ...</div>
+                <div class="preview-actions">
+                    <button class="btn btn-secondary" id="copyPromptBtn"><i class="fas fa-copy"></i> copy prompt</button>
+                    <button class="btn btn-primary" onclick="openAIModal()"><i class="fas fa-wand-magic"></i> generate invite</button>
+                </div>
+                <div style="margin-top:18px; text-align:center; color:#a64b1e;">🎈 make it personal · then create with AI</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- helper functions ----------
+        function toggleSection(n) {
+            document.getElementById(`section${n}`).classList.toggle('active');
+        }
+
+        function setColors(p, s) {
+            document.getElementById('primaryColor').value = p;
+            document.getElementById('secondaryColor').value = s;
+            document.getElementById('primaryPicker').value = p;
+            document.getElementById('secondaryPicker').value = s;
+            updatePrompt();
+        }
+
+        // events multi
+        function addEvent() {
+            let container = document.getElementById('eventContainer');
+            let card = document.createElement('div'); card.className = 'event-card';
+            card.innerHTML = `<span class="remove-event" onclick="removeEvent(this)"><i class="fas fa-times-circle"></i></span>
+                <div class="form-row"><label class="form-label">Event name</label><input class="form-control event-name" value="Cake cutting" onkeyup="updatePrompt()"></div>
+                <div class="form-row"><label class="form-label">Date & time</label><input class="form-control event-datetime" value="June 14 · 5:00 PM" onkeyup="updatePrompt()"></div>
+                <div class="form-row"><label class="form-label">Location</label><input class="form-control event-location" value="Same location" onkeyup="updatePrompt()"></div>`;
+            container.appendChild(card); updatePrompt();
+        }
+
+        function removeEvent(el) {
+            if(document.querySelectorAll('.event-card').length > 1) {
+                el.closest('.event-card').remove(); updatePrompt();
+            }
+        }
+
+        // generate prompt
+        function generatePrompt() {
+            let format = document.getElementById('format').value;
+            let prim = document.getElementById('primaryColor').value;
+            let sec = document.getElementById('secondaryColor').value;
+            let name = document.getElementById('birthdayName').value;
+            let age = document.getElementById('age').value;
+            let host = document.getElementById('host').value;
+            let theme = document.getElementById('theme').value;
+            let back = document.getElementById('backdrop').value;
+            let headline = document.getElementById('headline').value;
+            let subline = document.getElementById('subline').value;
+            let rsvp = document.getElementById('rsvpLine').value;
+            let font = document.getElementById('font').value;
+            let fx = document.getElementById('fx').value;
+            let art = document.getElementById('art').value;
+
+            let extras = [];
+            document.querySelectorAll('.extra:checked').forEach(cb => extras.push(cb.value));
+
+            // gather events
+            let eventsText = '';
+            let eventCards = document.querySelectorAll('.event-card');
+            eventCards.forEach((ec, idx) => {
+                let ename = ec.querySelector('.event-name')?.value || 'event';
+                let edt = ec.querySelector('.event-datetime')?.value || '';
+                let eloc = ec.querySelector('.event-location')?.value || '';
+                eventsText += `\n• ${ename}: ${edt}, ${eloc}`;
+            });
+
+            let prompt = `Design a beautiful ${format} for a birthday invitation. `;
+            prompt += `Color scheme: primary ${prim}, accent ${sec}. `;
+            prompt += `Celebrant: ${name}, turning ${age}. Hosted by ${host}. Theme: ${theme}. `;
+            prompt += `Background elements: ${back}. `;
+            if(extras.length) prompt += `Decorations include: ${extras.join(', ')}. `;
+            prompt += `Invitation wording: "${headline}" – "${subline}" – RSVP: "${rsvp}". `;
+            prompt += `Typography: ${font} with ${fx} effect. `;
+            prompt += `Party details:${eventsText}\n`;
+            prompt += `Artistic style: ${art}. Make it festive, inviting, and print-ready.`;
+
+            return prompt;
+        }
+
+        function updatePrompt() {
+            document.getElementById('promptPreview').innerText = generatePrompt();
+        }
+
+        // ----- robust copy (mobile + desktop) -----
+        function copyPrompt() {
+            const text = document.getElementById('promptPreview').innerText;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => showToast('✅ prompt copied!'))
+                .catch(() => fallbackCopy(text));
+            } else { fallbackCopy(text); }
+        }
+        function fallbackCopy(t) {
+            let ta = document.createElement('textarea');
+            ta.value = t;
+            ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            try { document.execCommand('copy'); showToast('✅ prompt copied!'); } catch(e) { showToast('❌ failed','#b34b4b'); }
+            document.body.removeChild(ta);
+        }
+        function showToast(msg, col) {
+            let t = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            t.style.backgroundColor = col || '#2f7a4c';
+            t.style.display = 'flex';
+            setTimeout(() => t.style.display='none', 2500);
+        }
+
+        // modal
+        function openAIModal() { document.getElementById('aiModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('aiModal').style.display = 'none'; }
+        function openChatGPT() {
+            window.open(`https://chatgpt.com/images?prompt=${encodeURIComponent(generatePrompt())}`, '_blank');
+            closeModal(); showToast('🚀 opening chatGPT');
+        }
+        function openGemini() { copyPrompt(); window.open('https://gemini.google.com', '_blank'); closeModal(); }
+        function copyPromptOnly() { copyPrompt(); }
+
+        window.onclick = (e) => { let m = document.getElementById('aiModal'); if(e.target == m) m.style.display = 'none'; }
+
+        window.onload = function() {
+            document.getElementById('section1').classList.add('active');
+            // listeners
+            document.querySelectorAll('input, select, textarea').forEach(i => i.addEventListener('change', updatePrompt));
+            document.querySelectorAll('input[type="text"], select').forEach(i => i.addEventListener('keyup', updatePrompt));
+            document.getElementById('copyPromptBtn').addEventListener('click', (e) => { e.preventDefault(); copyPrompt(); });
+            updatePrompt();
+        }
+    </script>
+</body>
+</html>
